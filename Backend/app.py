@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
-from model.gemma_lora import generate_response  # Only using this now
+from model.gemma_lora import generate_response
 
 app = FastAPI()
 
@@ -25,5 +25,5 @@ def get_prediction(input: SymptomInput):
         response = generate_response(text)
         return {"type": "llm", "response": response}
     except Exception as e:
-        print("❌ Error during prediction:", e)
-        return {"type": "error", "response": "⚠️ Internal server error."}
+        print("Error during prediction:", e)
+        return {"type": "error", "response": "Internal server error."}
